@@ -1,9 +1,19 @@
 # SIMD 
 
 
-## General Program Outputs
-![](C-Scalar Output.png)
-![](XMM-YMM Output and Kernel Execution Times.png)
+## C and Scalar Output
+
+![C and Scalar Output](C-Scalar%20Output.png)
+
+*Figure 1. Benchmark output for the C and Scalar implementations.*
+
+---
+
+## XMM and YMM Output
+
+![XMM and YMM Output](XMM-YMM%20Output%20and%20Kernel%20Execution%20Times.png)
+
+*Figure 2. Benchmark output for the XMM and YMM implementations.*
 ## Results and Discussion
 The data below shows the performance between C, Scalar Assembly,XMM and YMM. Each implementation was executed 30 times for the 3 input sizes (2^20,2^26,2^30). Execution time was measured in miliseconds and speedup was calculated relative to the C Implementation. SIMD implementations achieved the greatest performance improvements, particularly the XMM implementation. This is due to the implementations being able to process multiple data elements simultaneously rather than processing each element individually. The YMM in theory should be able to be faster than XMM since it has a wider register however as the input size grows where the working set is larger than the processor's cache used in the virtual environment (Xeon). The processor spends more time transferring data between DRAM and CPU than performing the instruction when processing through higher input sizes. The kernels were ran on Jupyter Notebook which could introduce a timing variability. A conclusion we could see from this is that the AVX frequency is reduced with the Intel Xeon Gold 5115 which is supported by this article from intel (https://www.intel.com/content/www/us/en/support/articles/000036924/processors/intel-xeon-processors.html)  where they state that vectorized applications generating high load on the processor cores may require more power and generate more heat which results in the reduction of frequency.
 
